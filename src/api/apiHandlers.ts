@@ -21,7 +21,7 @@ function handleGetRequest(url: RequestUrl) {
   }
 
   if (url && url.startsWith("/api/users/")) {
-    const userId = url.split("/api/users/").at(-1);
+    const userId = url.split("/api/users/")[1];
 
     if (!isValidUUID(userId)) {
       return createResponseObject(
@@ -29,7 +29,7 @@ function handleGetRequest(url: RequestUrl) {
         JSON.stringify(ERROR_MESSAGES.INVALID_ID)
       );
     }
-    const user = db.getUser(userId!);
+    const user = db.getUser(userId);
 
     return user
       ? createResponseObject(HTTP_STATUS_CODES.OK, JSON.stringify(user))
@@ -71,7 +71,7 @@ function handlePostResponse(requestBody: string) {
 }
 
 function handlePutResponse(url: string, requestBody: string) {
-  const userId = url.split("/api/users/").at(-1);
+  const userId = url.split("/api/users/")[1];
 
   const { username, age, hobbies }: User = JSON.parse(requestBody);
 
@@ -82,7 +82,7 @@ function handlePutResponse(url: string, requestBody: string) {
     );
   }
 
-  const currentUser = db.getUser(userId!);
+  const currentUser = db.getUser(userId);
 
   if (!currentUser) {
     return createResponseObject(
