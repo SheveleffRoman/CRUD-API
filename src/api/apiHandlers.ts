@@ -26,7 +26,7 @@ function handleGetRequest(url: RequestUrl) {
     if (!isValidUUID(userId)) {
       return createResponseObject(
         HTTP_STATUS_CODES.BAD_REQUEST,
-        JSON.stringify(ERROR_MESSAGES.INVALID_ID)
+        JSON.stringify(ERROR_MESSAGES.INVALID_ID),
       );
     }
     const user = db.getUser(userId);
@@ -35,13 +35,13 @@ function handleGetRequest(url: RequestUrl) {
       ? createResponseObject(HTTP_STATUS_CODES.OK, JSON.stringify(user))
       : createResponseObject(
           HTTP_STATUS_CODES.NOT_FOUND,
-          JSON.stringify(ERROR_MESSAGES.USER_NOT_FOUND)
+          JSON.stringify(ERROR_MESSAGES.USER_NOT_FOUND),
         );
   }
 
   return createResponseObject(
     HTTP_STATUS_CODES.NOT_FOUND,
-    JSON.stringify(ERROR_MESSAGES.RESOURCE_NOT_EXIST)
+    JSON.stringify(ERROR_MESSAGES.RESOURCE_NOT_EXIST),
   );
 }
 
@@ -51,7 +51,7 @@ function handlePostResponse(requestBody: string) {
   if (!username || !age || !hobbies?.length || !Array.isArray(hobbies)) {
     return createResponseObject(
       HTTP_STATUS_CODES.BAD_REQUEST,
-      JSON.stringify(ERROR_MESSAGES.MISSING_FIELDS)
+      JSON.stringify(ERROR_MESSAGES.MISSING_FIELDS),
     );
   } else {
     const newUser: User = {
@@ -65,7 +65,7 @@ function handlePostResponse(requestBody: string) {
 
     return createResponseObject(
       HTTP_STATUS_CODES.CREATED,
-      JSON.stringify(newUser)
+      JSON.stringify(newUser),
     );
   }
 }
@@ -78,7 +78,7 @@ function handlePutResponse(url: string, requestBody: string) {
   if (!isValidUUID(userId)) {
     return createResponseObject(
       HTTP_STATUS_CODES.BAD_REQUEST,
-      JSON.stringify(ERROR_MESSAGES.INVALID_ID)
+      JSON.stringify(ERROR_MESSAGES.INVALID_ID),
     );
   }
 
@@ -87,7 +87,7 @@ function handlePutResponse(url: string, requestBody: string) {
   if (!currentUser) {
     return createResponseObject(
       HTTP_STATUS_CODES.NOT_FOUND,
-      JSON.stringify(ERROR_MESSAGES.USER_NOT_FOUND)
+      JSON.stringify(ERROR_MESSAGES.USER_NOT_FOUND),
     );
   }
 
@@ -110,7 +110,7 @@ function handleDeleteResponse(url: string) {
   if (!isValidUUID(userId)) {
     return createResponseObject(
       HTTP_STATUS_CODES.BAD_REQUEST,
-      JSON.stringify(ERROR_MESSAGES.INVALID_ID)
+      JSON.stringify(ERROR_MESSAGES.INVALID_ID),
     );
   }
 
@@ -119,11 +119,11 @@ function handleDeleteResponse(url: string) {
   return deletedUser
     ? createResponseObject(
         HTTP_STATUS_CODES.NO_CONTENT,
-        JSON.stringify(CONFIRM_MESSAGES.USER_SUCCESSFULLY_DELETE)
+        JSON.stringify(CONFIRM_MESSAGES.USER_SUCCESSFULLY_DELETE),
       )
     : createResponseObject(
         HTTP_STATUS_CODES.NOT_FOUND,
-        JSON.stringify(ERROR_MESSAGES.USER_NOT_FOUND)
+        JSON.stringify(ERROR_MESSAGES.USER_NOT_FOUND),
       );
 }
 

@@ -1,5 +1,5 @@
-import dotenv from 'dotenv';
-import createAPIServer from './server/server';
+import dotenv from "dotenv";
+import createAPIServer from "./server/server";
 
 dotenv.config();
 

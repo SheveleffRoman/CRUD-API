@@ -17,7 +17,7 @@ class LocalDatabase {
 
   updateUser(updatedUser: User): void {
     const updatedList = this.userList.map((user) =>
-      user.id === updatedUser.id ? { ...updatedUser } : { ...user }
+      user.id === updatedUser.id ? { ...updatedUser } : { ...user },
     );
 
     this.userList = updatedList;

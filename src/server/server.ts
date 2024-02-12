@@ -23,7 +23,7 @@ function createAPIServer() {
 
         let responseObj = createResponseObject(
           HTTP_STATUS_CODES.NOT_FOUND,
-          JSON.stringify(ERROR_MESSAGES.RESOURCE_NOT_EXIST)
+          JSON.stringify(ERROR_MESSAGES.RESOURCE_NOT_EXIST),
         );
 
         try {
@@ -45,7 +45,7 @@ function createAPIServer() {
         } catch {
           responseObj = createResponseObject(
             HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR,
-            JSON.stringify(ERROR_MESSAGES.INTERNAL_SERVER_ERROR_MESSAGE)
+            JSON.stringify(ERROR_MESSAGES.INTERNAL_SERVER_ERROR_MESSAGE),
           );
         }
 
