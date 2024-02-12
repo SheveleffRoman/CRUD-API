@@ -2,6 +2,7 @@
 Simple CRUD API using in-memory database.
 
 ### How to use:
++ `git checkout develop`
 + use script `npm install`,
 + rename .env.example to .env
 + use script `npm run start:dev` for working in development mode,
