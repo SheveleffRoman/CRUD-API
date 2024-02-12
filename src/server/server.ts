@@ -2,6 +2,7 @@ import http, { IncomingMessage, ServerResponse } from "http";
 import { ERROR_MESSAGES } from "../constants/messages";
 import {
   createResponseObject,
+  handleDeleteResponse,
   handleGetRequest,
   handlePostResponse,
   handlePutResponse,
@@ -38,7 +39,9 @@ function createAPIServer() {
             responseObj = handlePutResponse(url, requestBody);
           }
 
-
+          if (method === "DELETE" && url?.startsWith("/api/users/")) {
+            responseObj = handleDeleteResponse(url);
+          }
         } catch {
           responseObj = createResponseObject(
             HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR,

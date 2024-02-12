@@ -104,10 +104,33 @@ function handlePutResponse(url: string, requestBody: string) {
   return createResponseObject(200, JSON.stringify(updatedUser));
 }
 
+function handleDeleteResponse(url: string) {
+  const userId = url.split("/api/users/")[1];
+
+  if (!isValidUUID(userId)) {
+    return createResponseObject(
+      HTTP_STATUS_CODES.BAD_REQUEST,
+      JSON.stringify(ERROR_MESSAGES.INVALID_ID)
+    );
+  }
+
+  const deletedUser = db.deleteUser(userId);
+
+  return deletedUser
+    ? createResponseObject(
+        HTTP_STATUS_CODES.NO_CONTENT,
+        JSON.stringify(ERROR_MESSAGES.USER_SUCCESSFULLY_DELETE)
+      )
+    : createResponseObject(
+        HTTP_STATUS_CODES.NOT_FOUND,
+        JSON.stringify(ERROR_MESSAGES.USER_NOT_FOUND)
+      );
+}
 
 export {
   createResponseObject,
   handleGetRequest,
   handlePostResponse,
   handlePutResponse,
+  handleDeleteResponse,
 };
