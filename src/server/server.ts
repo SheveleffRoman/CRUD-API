@@ -4,6 +4,7 @@ import {
   createResponseObject,
   handleGetRequest,
   handlePostResponse,
+  handlePutResponse,
 } from "../api/apiHandlers";
 import { HTTP_STATUS_CODES } from "../constants/statusCodes";
 
@@ -32,6 +33,11 @@ function createAPIServer() {
           if (method === "POST" && url === "/api/users") {
             responseObj = handlePostResponse(requestBody);
           }
+
+          if (method === "PUT" && url?.startsWith("/api/users/")) {
+            responseObj = handlePutResponse(url, requestBody);
+          }
+
 
         } catch {
           responseObj = createResponseObject(

@@ -63,13 +63,51 @@ function handlePostResponse(requestBody: string) {
 
     db.addUser(newUser);
 
-    return createResponseObject(HTTP_STATUS_CODES.CREATED, JSON.stringify(newUser));
+    return createResponseObject(
+      HTTP_STATUS_CODES.CREATED,
+      JSON.stringify(newUser)
+    );
   }
 }
+
+function handlePutResponse(url: string, requestBody: string) {
+  const userId = url.split("/api/users/").at(-1);
+
+  const { username, age, hobbies }: User = JSON.parse(requestBody);
+
+  if (!isValidUUID(userId)) {
+    return createResponseObject(
+      HTTP_STATUS_CODES.BAD_REQUEST,
+      JSON.stringify(ERROR_MESSAGES.INVALID_ID)
+    );
+  }
+
+  const currentUser = db.getUser(userId!);
+
+  if (!currentUser) {
+    return createResponseObject(
+      HTTP_STATUS_CODES.NOT_FOUND,
+      JSON.stringify(ERROR_MESSAGES.USER_NOT_FOUND)
+    );
+  }
+
+  const updatedUser: User = {
+    id: currentUser.id,
+    username: typeof username === "string" ? username : currentUser.username,
+    age: typeof age === "number" ? age : currentUser.age,
+    hobbies:
+      Array.isArray(hobbies) && Array.length ? hobbies : currentUser.hobbies,
+  };
+
+  db.updateUser(updatedUser);
+
+  return createResponseObject(200, JSON.stringify(updatedUser));
+}
+
 
 export {
   createResponseObject,
   handleGetRequest,
   handlePostResponse,
-
+  handlePutResponse,
 };
