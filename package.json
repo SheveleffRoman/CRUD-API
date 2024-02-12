@@ -1,13 +1,17 @@
 {
   "name": "crud-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "CRUD API app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:prod": "npm run build && node dist/index.js",
+    "start:dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "webpack --config webpack.config.js",
+    "lint": "eslint \"src/**/*.ts\" --fix",
+    "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "sheveleffroman",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.11.17",
