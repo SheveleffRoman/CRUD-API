@@ -3,7 +3,7 @@ import db from "../services/db";
 import { isValidUUID } from "../utils/uuidValidator";
 
 import { RequestUrl, User } from "../interfaces";
-import { ERROR_MESSAGES } from "../constants/messages";
+import { CONFIRM_MESSAGES, ERROR_MESSAGES } from "../constants/messages";
 import { HTTP_STATUS_CODES } from "../constants/statusCodes";
 
 function createResponseObject(statusCode: number, response: string) {
@@ -119,7 +119,7 @@ function handleDeleteResponse(url: string) {
   return deletedUser
     ? createResponseObject(
         HTTP_STATUS_CODES.NO_CONTENT,
-        JSON.stringify(ERROR_MESSAGES.USER_SUCCESSFULLY_DELETE)
+        JSON.stringify(CONFIRM_MESSAGES.USER_SUCCESSFULLY_DELETE)
       )
     : createResponseObject(
         HTTP_STATUS_CODES.NOT_FOUND,
