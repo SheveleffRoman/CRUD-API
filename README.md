@@ -11,3 +11,50 @@ Simple CRUD API using in-memory database.
 
 ### How to specify port:
 you can change port in .env file
+
+## API Endpoints
+
+#### Get all users
+
+```
+method: get
+address: http://localhost:3000/api/users
+```
+
+#### Add one user
+
+```
+method: post
+address: http://localhost:3000/api/users
+body: {
+    "username": "skave",
+    "age": 25,
+    "hobbies": ["dance"]
+}
+```
+
+#### Get user
+
+```
+method: get
+address: http://localhost:3000/api/users/${userID}
+```
+
+#### Update user
+
+```
+method: put
+address: http://localhost:3000/api/users/${userID}
+body: {
+    "username": "nat",
+    "age": 12,
+    "hobbies": ["dance"]
+}
+```
+
+#### Delete user
+
+```
+method: delete
+address: http://localhost:3000/api/users/${userID}
+```
