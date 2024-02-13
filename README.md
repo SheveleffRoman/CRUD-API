@@ -27,9 +27,9 @@ address: http://localhost:3000/api/users
 method: post
 address: http://localhost:3000/api/users
 body: {
-    "username": "skave",
+    "username": "user",
     "age": 25,
-    "hobbies": ["dance"]
+    "hobbies": ["tennis", "reading"]
 }
 ```
 
@@ -46,9 +46,9 @@ address: http://localhost:3000/api/users/${userID}
 method: put
 address: http://localhost:3000/api/users/${userID}
 body: {
-    "username": "nat",
-    "age": 12,
-    "hobbies": ["dance"]
+    "username": "user",
+    "age": 25,
+    ["tennis", "reading"]
 }
 ```
 
